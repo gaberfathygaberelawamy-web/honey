@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>هل تتزوجيني؟ ❤️</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      color: white;
+      transition: background 1s ease;
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+      animation: fadeIn 2s ease-in-out;
+      margin: 0;
+    }
+
+    .container {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      backdrop-filter: blur(5px);
+      padding: 30px;
+      border-radius: 20px;
+    }
+
+    .my-photo {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+      object-fit: cover;
+      margin-bottom: 20px;
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .my-photo:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 40px rgba(255, 255, 255, 1);
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    button {
+      background: #ff4b5c;
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 50px;
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 75, 92, 0.5);
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background: #ff1e40;
+      box-shadow: 0 6px 20px rgba(255, 30, 64, 0.7);
+    }
+
+    .hearts {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .heart {
+      position: absolute;
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 20px;
+      animation: float 8s linear infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(1); opacity: 1; }
+      100% { transform: translateY(-10vh) scale(0); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .name {
+      margin-top: 10px;
+      font-size: 1.3rem;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+
+    audio { display: none; }
+  </style>
+</head>
+<body>
+  <div class="hearts" id="hearts"></div>
+
+  <div class="container" id="main-container">
+    <img src="your-photo.jpg" alt="صورتك" class="my-photo">
+    <h1>هل تتزوجيني؟ ❤️</h1>
+    <p class="name">— عبد الرحمن —</p>
+
+    <div class="btn-container">
+      <button onclick="accept()">نعم ❤️</button>
+      <button onclick="decline()">لا 💔</button>
+    </div>
+  </div>
+
+  <!-- الموسيقى -->
+  <audio id="bg-music" src="your-music.mp3" loop></audio>
+
+  <script>
+    const heartsContainer = document.getElementById('hearts');
+    const music = document.getElementById('bg-music');
+    const mainContainer = document.getElementById('main-container');
+
+    function showHearts() {
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.classList.add('heart');
+        heart.textContent = '💖';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+        heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+        heartsContainer.appendChild(heart);
+        setTimeout(() => heart.remove(), 10000);
+      }, 300);
+    }
+
+    function accept() {
+      // تشغيل الموسيقى
+      music.play().catch(e => console.log("Autoplay blocked:", e));
+      // تشغيل تأثير القلوب
+      showHearts();
+      // إزالة الأزرار
+      document.querySelector('.btn-container').style.display = 'none';
+    }
+
+    function decline() {
+      // تغيير الخلفية للأسود
+      document.body.style.background = '#000';
+      // إزالة المحتوى
+      mainContainer.style.display = 'none';
+    }
+  </script>
+</body>
+</html>
