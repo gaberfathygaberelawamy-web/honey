@@ -3,172 +3,700 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>هل تتزوجيني؟ ❤️</title>
+  <title>يا حبيبتي... هنكمل بعض؟ 💍❤️</title>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * { box-sizing: border-box; }
-
-    body {
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
       font-family: 'Tajawal', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
+      min-height: 100vh;
+      overflow-x: hidden;
       color: white;
-      transition: background 1s ease;
+      position: relative;
+      transition: background 1.5s ease;
     }
 
-    h1 {
-      font-size: 3rem;
-      text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-      animation: fadeIn 2s ease-in-out;
-      margin: 0;
+    /* خلفية متحركة */
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+      z-index: 0;
+      animation: twinkle 20s infinite linear;
     }
 
     .container {
       text-align: center;
       position: relative;
-      z-index: 2;
-      backdrop-filter: blur(5px);
+      z-index: 10;
+      max-width: 800px;
+      width: 90%;
       padding: 30px;
-      border-radius: 20px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2),
+                  inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+      margin: 20px;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    .photo-frame {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      margin: 0 auto 25px;
+      padding: 8px;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a18cd1, #fbc2eb);
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      animation: pulse 3s infinite alternate;
     }
 
     .my-photo {
-      width: 150px;
-      height: 150px;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
-      border: 4px solid white;
-      box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
       object-fit: cover;
-      margin-bottom: 20px;
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      border: 4px solid white;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
     .my-photo:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 40px rgba(255, 255, 255, 1);
+      transform: scale(1.05) rotate(5deg);
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      margin-bottom: 10px;
+      background: linear-gradient(to right, #ff9a9e, #fad0c4, #fad0c4, #ff9a9e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 25%;
+      width: 50%;
+      height: 3px;
+      background: linear-gradient(to right, transparent, #ff9a9e, #fad0c4, transparent);
+      border-radius: 3px;
+    }
+
+    .subtitle {
+      font-size: 1.4rem;
+      margin-bottom: 30px;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .name {
+      font-size: 1.6rem;
+      margin: 10px 0 30px;
+      color: #fff;
+      letter-spacing: 2px;
+      font-weight: 700;
+      padding: 10px 25px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50px;
+      display: inline-block;
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .btn-container {
       display: flex;
       justify-content: center;
-      gap: 20px;
-      margin-top: 25px;
+      gap: 25px;
+      margin-top: 30px;
+      flex-wrap: wrap;
     }
 
     button {
-      background: #ff4b5c;
-      color: white;
+      min-width: 180px;
+      padding: 18px 45px;
       border: none;
-      padding: 15px 40px;
       border-radius: 50px;
-      font-size: 1.3rem;
+      font-size: 1.4rem;
+      font-weight: 700;
       cursor: pointer;
-      transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255, 75, 92, 0.5);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
 
-    button:hover {
-      transform: scale(1.1);
-      background: #ff1e40;
-      box-shadow: 0 6px 20px rgba(255, 30, 64, 0.7);
+    .yes-btn {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: #8a4b6e;
     }
 
-    .hearts {
+    .yes-btn:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(255, 154, 158, 0.4);
+    }
+
+    .no-btn {
+      background: linear-gradient(135deg, #a18cd1, #fbc2eb);
+      color: #5a4a78;
+    }
+
+    .no-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 25px rgba(161, 140, 209, 0.4);
+    }
+
+    button::after {
+      content: '';
       position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.7s;
+    }
+
+    button:hover::after {
+      left: 100%;
+    }
+
+    .hearts-container {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
       overflow: hidden;
-      z-index: 1;
+      z-index: 5;
       pointer-events: none;
     }
 
     .heart {
       position: absolute;
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 20px;
-      animation: float 8s linear infinite;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 24px;
+      animation: floatUp 8s linear infinite;
+      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
     }
 
-    @keyframes float {
-      0% { transform: translateY(100vh) scale(1); opacity: 1; }
-      100% { transform: translateY(-10vh) scale(0); opacity: 0; }
+    .ring-icon {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2.5rem;
+      color: #ffd700;
+      animation: spin 20s linear infinite;
+      filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
+    .message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: rgba(255, 255, 255, 0.95);
+      color: #8a4b6e;
+      padding: 40px;
+      border-radius: 25px;
+      text-align: center;
+      z-index: 100;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 90%;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    .name {
-      margin-top: 10px;
+    .message h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #ff6b8b;
+    }
+
+    .message p {
       font-size: 1.3rem;
-      color: #fff;
-      letter-spacing: 1px;
+      line-height: 1.8;
+      margin-bottom: 25px;
     }
 
-    audio { display: none; }
+    .close-message {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: white;
+      border: none;
+      padding: 12px 35px;
+      border-radius: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .close-message:hover {
+      transform: scale(1.05);
+    }
+
+    .flowers {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 150px;
+      background: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f338.svg') repeat-x;
+      background-size: contain;
+      opacity: 0.6;
+      z-index: 1;
+      animation: slide 30s linear infinite;
+    }
+
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 20;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      transition: all 0.3s;
+    }
+
+    .audio-control:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(1.1);
+    }
+
+    /* تأثيرات الحركة */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      }
+      100% {
+        transform: scale(1.03);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      }
+    }
+
+    @keyframes twinkle {
+      0% {
+        transform: translateY(0) translateX(0);
+      }
+      100% {
+        transform: translateY(-500px) translateX(-500px);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes slide {
+      0% {
+        background-position: 0 0;
+      }
+      100% {
+        background-position: 1000px 0;
+      }
+    }
+
+    /* تأثير النهاية الحزينة */
+    .sad-ending {
+      background: linear-gradient(135deg, #1a1a2e, #16213e);
+    }
+
+    .sad-ending .container {
+      display: none;
+    }
+
+    .sad-message {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      padding: 40px;
+      border-radius: 25px;
+      text-align: center;
+      z-index: 100;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 90%;
+      animation: fadeInUp 1.5s ease-out;
+    }
+
+    .sad-message h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #6a11cb;
+    }
+
+    .sad-message p {
+      font-size: 1.3rem;
+      line-height: 1.8;
+      margin-bottom: 25px;
+    }
+
+    /* تصميم متجاوب */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5rem;
+      }
+      
+      .subtitle {
+        font-size: 1.2rem;
+      }
+      
+      .btn-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      button {
+        width: 90%;
+        max-width: 300px;
+      }
+      
+      .container {
+        padding: 20px;
+      }
+      
+      .photo-frame {
+        width: 150px;
+        height: 150px;
+      }
+    }
+
+    /* إخفاء العناصر */
+    .hidden {
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <div class="hearts" id="hearts"></div>
-
+  <div class="background-overlay"></div>
+  <div class="hearts-container" id="hearts-container"></div>
+  
+  <div class="ring-icon">💍</div>
+  
+  <div class="flowers"></div>
+  
+  <div class="audio-control" id="audio-control">
+    <i class="fas fa-music"></i>
+  </div>
+  
   <div class="container" id="main-container">
-    <img src="your-photo.jpg" alt="صورتك" class="my-photo">
-    <h1>هل تتزوجيني؟ ❤️</h1>
-    <p class="name">— عبد الرحمن —</p>
-
+    <div class="photo-frame">
+      <img src="your-photo.jpg" alt="صورة عبد الرحمن" class="my-photo" id="my-photo">
+    </div>
+    
+    <h1>يا حبيبتي... هنكمل بعض؟ 💍</h1>
+    
+    <p class="subtitle">يا حبيبتي العمر كلو مش هيكفي عشان أقولك قد إيه بحبك، بس مش عايز غيرك في حياتي... تقبلي تبقى نصي التاني؟</p>
+    
+    <div class="name">— عبد الرحمن —</div>
+    
     <div class="btn-container">
-      <button onclick="accept()">نعم ❤️</button>
-      <button onclick="decline()">لا 💔</button>
+      <button class="yes-btn" onclick="acceptProposal()">
+        <i class="fas fa-heart"></i> أيوه يا حبيبي، اتجوزك بكل قلبي ❤️
+      </button>
+      <button class="no-btn" onclick="declineProposal()">
+        <i class="fas fa-heart-broken"></i> آسف مش قادرة دلوقتي 💔
+      </button>
     </div>
   </div>
-
-  <!-- الموسيقى -->
-  <audio id="bg-music" src="your-music.mp3" loop></audio>
-
+  
+  <!-- رسالة القبول -->
+  <div class="message" id="accept-message">
+    <h2>مبارك يا روحي! 🎉</h2>
+    <p> هتبقى أحسن أيام حياتي معاكي وهخليكي أسعد واحدة في الكون!</p>
+    <p>عاااااااا😂❤️ ❤️</p>
+    <button class="close-message" onclick="closeMessage()">تمام يا قلبي</button>
+  </div>
+  
+  <!-- رسالة الرفض -->
+  <div class="sad-message hidden" id="sad-message">
+    <h2>💔 الله معاكي يا حبيبتي</h2>
+    <p>مفيش الكلام دا انتي هتتجوزيني يعني هتتجوزيني 🙂👊</p>
+    <button class="close-message" onclick="location.reload()">خلاص يا عم</button>
+  </div>
+  
+  <!-- الموسيقى - سأستخدم أغنية رومانسية -->
+  <audio id="bg-music" loop>
+    <source src="your-music.mp3" type="audio/mpeg">
+    <!-- إذا كان الملف لا يعمل، استخدم هذا البديل -->
+    <source src="https://assets.mixkit.co/music/preview/mixkit-romantic-sunset-687.mp3" type="audio/mpeg">
+  </audio>
+  
   <script>
-    const heartsContainer = document.getElementById('hearts');
+    // العناصر الرئيسية
+    const heartsContainer = document.getElementById('hearts-container');
     const music = document.getElementById('bg-music');
+    const audioControl = document.getElementById('audio-control');
     const mainContainer = document.getElementById('main-container');
-
-    function showHearts() {
+    const acceptMessage = document.getElementById('accept-message');
+    const sadMessage = document.getElementById('sad-message');
+    const myPhoto = document.getElementById('my-photo');
+    const body = document.body;
+    
+    // حالة الموسيقى
+    let isPlaying = false;
+    
+    // قائمة بالكلمات المصرية للرسائل
+    const egyptianMessages = [
+      "يا حبيبتي أنت نعمة ربنا عليا",
+      "مش هقدر أعيش من غيرك",
+      "أنت أكتر حاجة حلوة في حياتي",
+      "هعوضك عيشة مليانة فرح وسعادة",
+      "إنتي حلم عمرنا اللي بيتحقق",
+      "ربنا يجمعنا على خير يا قلبي"
+    ];
+    
+    // تحميل الصورة الشخصية (سيتم استخدام your-photo.jpg)
+    // يمكنك إضافة صور بديلة إذا أردت
+    const photoUrls = [
+      'your-photo.jpg',
+      'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
+    ];
+    
+    // تغيير الصورة عند النقر
+    let photoIndex = 0;
+    myPhoto.addEventListener('click', () => {
+      photoIndex = (photoIndex + 1) % photoUrls.length;
+      myPhoto.src = photoUrls[photoIndex];
+    });
+    
+    // التحكم بالموسيقى
+    audioControl.addEventListener('click', () => {
+      if (isPlaying) {
+        music.pause();
+        audioControl.innerHTML = '<i class="fas fa-music"></i>';
+        audioControl.style.background = 'rgba(255, 255, 255, 0.2)';
+      } else {
+        music.play().catch(e => {
+          console.log("التشغيل التلقائي محظور:", e);
+        });
+        audioControl.innerHTML = '<i class="fas fa-pause"></i>';
+        audioControl.style.background = 'rgba(255, 154, 158, 0.5)';
+        isPlaying = true;
+      }
+    });
+    
+    // إنشاء القلوب الطائرة
+    function createHearts(count = 100) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(() => {
+          const heart = document.createElement('div');
+          heart.classList.add('heart');
+          heart.innerHTML = '❤️';
+          heart.style.left = Math.random() * 100 + 'vw';
+          heart.style.fontSize = Math.random() * 25 + 15 + 'px';
+          heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+          heart.style.opacity = Math.random() * 0.5 + 0.5;
+          heartsContainer.appendChild(heart);
+          
+          // إزالة القلب بعد انتهاء الحركة
+          setTimeout(() => {
+            heart.remove();
+          }, 10000);
+        }, i * 100);
+      }
+    }
+    
+    // قلوب مستمرة عند القبول
+    function startContinuousHearts() {
       setInterval(() => {
         const heart = document.createElement('div');
         heart.classList.add('heart');
-        heart.textContent = '💖';
+        heart.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+        heart.style.fontSize = Math.random() * 25 + 15 + 'px';
         heart.style.animationDuration = Math.random() * 5 + 5 + 's';
+        heart.style.opacity = Math.random() * 0.5 + 0.5;
         heartsContainer.appendChild(heart);
-        setTimeout(() => heart.remove(), 10000);
+        
+        setTimeout(() => {
+          heart.remove();
+        }, 10000);
       }, 300);
     }
-
-    function accept() {
-      // تشغيل الموسيقى
-      music.play().catch(e => console.log("Autoplay blocked:", e));
-      // تشغيل تأثير القلوب
-      showHearts();
-      // إزالة الأزرار
+    
+    // قبول العرض
+    function acceptProposal() {
+      // تشغيل الموسيقى تلقائياً - تم التعديل هنا
+      music.play().then(() => {
+        console.log("الموسيقى تشتغل بنجاح!");
+        audioControl.innerHTML = '<i class="fas fa-pause"></i>';
+        audioControl.style.background = 'rgba(255, 154, 158, 0.5)';
+        isPlaying = true;
+      }).catch(e => {
+        console.log("محتاج تفاعل المستخدم لتشغيل الموسيقى:", e);
+        
+        // محاولة بديلة: إعادة تحميل الصفحة وتشغيل الموسيقى
+        setTimeout(() => {
+          music.play().then(() => {
+            console.log("الموسيقى اشتغلت بعد المحاولة الثانية!");
+            audioControl.innerHTML = '<i class="fas fa-pause"></i>';
+            audioControl.style.background = 'rgba(255, 154, 158, 0.5)';
+            isPlaying = true;
+          }).catch(e2 => {
+            console.log("لا يمكن تشغيل الموسيقى:", e2);
+            // عرض رسالة للمستخدم
+            alert("يا حبيبتي! لازم تضغطي على أيقونة الموسيقى عشان الأغنية تشتغل! 🎵");
+          });
+        }, 500);
+      });
+      
+      // تأثيرات القبول
+      createHearts(150);
+      startContinuousHearts();
+      
+      // تغيير الخلفية
+      body.style.background = 'linear-gradient(135deg, #ff9a9e 0%, #fad0c4 50%, #a18cd1 100%)';
+      
+      // عرض رسالة القبول
+      setTimeout(() => {
+        acceptMessage.style.transform = 'translate(-50%, -50%) scale(1)';
+      }, 1000);
+      
+      // إخفاء الأزرار
       document.querySelector('.btn-container').style.display = 'none';
+      
+      // تغيير النص
+      document.querySelector('h1').innerHTML = 'عحبك 😂🐣! 💖';
+      document.querySelector('.subtitle').innerHTML = 'من النهاردة هنكتب أجمل قصة حب في الدنيا دي، وعمر ما هنسي النهاردة دي!';
+      
+      // محاولة تشغيل الموسيقى مرة أخرى بعد التأخير
+      setTimeout(() => {
+        if (!isPlaying) {
+          music.play().then(() => {
+            console.log("الموسيقى اشتغلت بعد التأخير!");
+            audioControl.innerHTML = '<i class="fas fa-pause"></i>';
+            audioControl.style.background = 'rgba(255, 154, 158, 0.5)';
+            isPlaying = true;
+          });
+        }
+      }, 2000);
     }
-
-    function decline() {
-      // تغيير الخلفية للأسود
-      document.body.style.background = '#000';
-      // إزالة المحتوى
+    
+    // رفض العرض
+    function declineProposal() {
+      // تغيير الخلفية للحزينة
+      body.classList.add('sad-ending');
+      
+      // إخفاء المحتوى الرئيسي
       mainContainer.style.display = 'none';
+      
+      // عرض رسالة الرفض
+      setTimeout(() => {
+        sadMessage.classList.remove('hidden');
+      }, 1000);
+      
+      // إنشاء قلوب مكسورة
+      setInterval(() => {
+        const brokenHeart = document.createElement('div');
+        brokenHeart.classList.add('heart');
+        brokenHeart.innerHTML = '💔';
+        brokenHeart.style.left = Math.random() * 100 + 'vw';
+        brokenHeart.style.fontSize = Math.random() * 20 + 10 + 'px';
+        brokenHeart.style.animationDuration = Math.random() * 5 + 5 + 's';
+        brokenHeart.style.opacity = Math.random() * 0.5 + 0.5;
+        brokenHeart.style.color = '#888';
+        heartsContainer.appendChild(brokenHeart);
+        
+        setTimeout(() => {
+          brokenHeart.remove();
+        }, 10000);
+      }, 500);
     }
+    
+    // إغلاق رسالة القبول
+    function closeMessage() {
+      acceptMessage.style.transform = 'translate(-50%, -50%) scale(0)';
+      
+      // إضافة عنصر تفاعلي إضافي
+      setTimeout(() => {
+        const finalMessage = document.createElement('div');
+        finalMessage.innerHTML = '<h3>كملي بقا اللي كنتي بتعمليه 😂🐣! 🎊</h3>';
+        finalMessage.style.textAlign = 'center';
+        finalMessage.style.marginTop = '30px';
+        finalMessage.style.padding = '20px';
+        finalMessage.style.background = 'rgba(255, 255, 255, 0.2)';
+        finalMessage.style.borderRadius = '15px';
+        mainContainer.appendChild(finalMessage);
+      }, 500);
+    }
+    
+    // إنشاء قلوب أولية عند التحميل
+    window.addEventListener('load', () => {
+      createHearts(30);
+      
+      // عرض رسالة ترحيب مصرية
+      setTimeout(() => {
+        if (!isPlaying) {
+          const welcomeMsg = document.createElement('div');
+          welcomeMsg.innerHTML = '<p style="background: rgba(0,0,0,0.5); padding: 10px; border-radius: 10px; margin-top: 10px;">هلا والله 👀😂 💖</p>';
+          mainContainer.appendChild(welcomeMsg);
+          setTimeout(() => welcomeMsg.remove(), 3000);
+        }
+      }, 2000);
+    });
   </script>
 </body>
 </html>
